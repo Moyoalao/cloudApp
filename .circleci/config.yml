@@ -11,6 +11,16 @@ jobs:
           name: Install dependencies
           command: bundle install
 
+  test:
+    docker:
+      - image: cimg/ruby:3.2.2
+    working_directory: ~/GameProgressTracker
+    steps:
+      - checkout
+      - run:
+          name: Run tests
+          command: bundle exec rspec  # Replace with your testing command
+
   deploy:
     docker:
       - image: cimg/ruby:3.2.2
