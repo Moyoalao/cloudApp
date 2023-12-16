@@ -35,5 +35,5 @@ jobs:
       - image: cimg/ruby:3.2.2
     steps:
       - run:
-          name: hello
+          name: world
           commandL: echo world
