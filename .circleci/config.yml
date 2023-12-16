@@ -1,5 +1,6 @@
+version: 2
+
 workflows:
-  version: 2
   build:
     jobs:
       - build:
@@ -12,9 +13,9 @@ workflows:
             branches:
               only:
                 - main
-       requires:
+        requires:
           - build
-
+          
 orbs:
   ruby: circleci/ruby@1.4.0
 
