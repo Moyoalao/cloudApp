@@ -12,7 +12,7 @@ jobs:
           command: bundle install
       - run:
           name: Start Rails server
-          command: bundle exec rails server -b 0.0.0.0
+          command: bundle exec rails server 
 
 
   deploy:
@@ -26,6 +26,8 @@ jobs:
           name: Deploy to EC2
           command: |
             echo "Deploying to EC2..."
+            scp -i cloud_aws.pem -r ./ ubuntu@ip-172-31-35-24:http://16.171.153.138:3000/games
+            ssh -i cloud_aws.pem ubuntu@ip-172-31-35-24: "cd http://16.171.153.138:3000/games && bundle install && rake db:migrate && sudo service cloudApp restart"
             docker login -u "moyosore09" -p "thisisthis09"
             docker pull cloudapp:latest || true
             docker build -t cloudapp .
