@@ -26,7 +26,7 @@ jobs:
       - image: cimg/ruby:3.2.2
     steps:
       - checkout
-      -setup_remote_docker
+      - setup_remote_docker
       -run:
         name: hello 
         command: echo hello
