@@ -27,7 +27,7 @@ jobs:
     steps:
       -checkout
       - setup_remote_docker
-      - run :
+      - run 
           name: hello 
           command: echo hello
   deploy:
