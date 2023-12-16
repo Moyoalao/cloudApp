@@ -6,16 +6,14 @@ workflows:
           filters:
             branches:
               only:
-                -main
+                - main
       - deploy:
           filters:
             branches:
               only:
                 - main
         requires:
-          - build:
-          
-
+          - build
 
 orbs:
   ruby: circleci/ruby@1.4.0
@@ -37,4 +35,4 @@ jobs:
     steps:
       - run:
           name: world
-          commandL: echo world
+          command: echo world
