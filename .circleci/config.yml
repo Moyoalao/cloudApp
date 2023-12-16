@@ -1,33 +1,31 @@
-version: 2
+version: 2.1
 
 jobs:
   build:
     docker:
       - image: cimg/ruby:3.2.2
-      - image: circleci/postgres:13.3
     working_directory: ~/GameProgressTracker
     steps:
       - checkout
       - run:
           name: Install dependencies
-          command: |
-            bundle install
-      - run:
-          name: Database setup
-          command: |
-            bundle exec rake db:create db:migrate
-      - run:
-          name: Start Rails server
-          command: |
-            bundle exec rails server -b 0.0.0.0
+          command: bundle install
 
   deploy:
     docker:
       - image: cimg/ruby:3.2.2
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICaQB4GKgeM8O+HAiR9kYkbVQQmHo1nWrcOa8rkd5F0n moyosore921@gmail.com"
       - run:
           name: Deploy to EC2
           command: |
             echo "Deploying to EC2..."
-            scp -i cloud_aws.pem -r ./ ubuntu@ip-172-31-35-24:http://16.171.153.138:3000/games
-            ssh -i cloud_aws.pem ubuntu@ip-172-31-35-24: "cd http://16.171.153.138:3000/games && bundle install && rake db:migrate && sudo service cloudApp restart"
+            docker login -u "moyosore09" -p "thisisthis09"
+            docker pull cloudapp:latest || true
+            docker build -t cloudapp .
+            docker tag cloudapp:latest cloudapp:$(date +'%Y%m%d%H%M%S')
+            docker push cloudapp:latest
+            docker push cloudapp:$(date +'%Y%m%d%H%M%S')
+            ssh -i cloud_aws.pem ubuntu@ip-172-31-35-24 "docker-compose -f GameProgressTracker\docker-compose.yml pull && docker-compose -f GameProgressTracker\docker-compose.yml up -d"
