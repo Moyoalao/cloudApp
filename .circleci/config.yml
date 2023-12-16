@@ -10,6 +10,10 @@ jobs:
       - run:
           name: Install dependencies
           command: bundle install
+      - run:
+          name: Start Rails server
+          command: bundle exec rails server -b 0.0.0.0
+
 
   deploy:
     docker:
