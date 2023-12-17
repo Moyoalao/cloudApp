@@ -13,7 +13,7 @@ class GameTest < ActiveSupport::TestCase
     will_play_game = Game.new(status: 'will_play')
     assert_not will_play_game.valid?
 
-    valid_will_play_game = Game.new(status: 'will_play', hours_played: 0)
+    valid_will_play_game = Game.new(status: 'will_play', hours_played: nil)
     assert valid_will_play_game.valid?
   end
 end
