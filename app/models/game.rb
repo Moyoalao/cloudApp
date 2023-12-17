@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# game
 class Game < ApplicationRecord
   validates :status, inclusion: { in: %w[playing played will_play],
                                   message: '%<value>s is not a valid status' }

@@ -1,5 +1,7 @@
+# games controller
 # frozen_string_literal: true
 
+# game controller
 class GamesController < ApplicationController
   before_action :set_game, only: %i[show update destroy]
 

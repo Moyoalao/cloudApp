@@ -25,7 +25,6 @@ jobs:
       - run:
           name: Docker
           command: |
-            docker login -u "moyosore09" -p "thisisthis09"
             docker pull cloudapp:latest || true
             docker build -t cloudapp .
             docker tag cloudapp:latest cloudapp:$(date +'%Y%m%d%H%M%S')
