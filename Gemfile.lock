@@ -75,11 +75,16 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    ast (2.4.2)
     base64 (0.2.0)
     bigdecimal (3.1.5)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
+    brakeman (6.1.0)
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -100,10 +105,12 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    io-console (0.7.0)
+    io-console (0.7.1)
     irb (1.10.1)
       rdoc
       reline (>= 0.3.8)
+    json (2.7.1)
+    language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -131,6 +138,12 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
+    parallel (1.24.0)
+    parser (3.2.2.4)
+      ast (~> 2.4.1)
+      racc
+    pg (1.5.4)
+    pg (1.5.4-x64-mingw-ucrt)
     psych (5.1.1.1)
       stringio
     puma (6.4.0)
@@ -175,11 +188,14 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.1.0)
-    rdoc (6.6.1)
+    rdoc (6.6.2)
       psych (>= 4.0.0)
+    regexp_parser (2.8.3)
     reline (0.4.1)
       io-console (~> 0.5)
+    rexml (3.2.6)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -193,7 +209,28 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.1)
+    rubocop (1.59.0)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.2.2.4)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.30.0)
+      parser (>= 3.2.1.0)
+    rubocop-rails (2.23.0)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    ruby_audit (2.2.0)
+      bundler-audit (~> 0.9.0)
     sqlite3 (1.6.9-x64-mingw-ucrt)
     sqlite3 (1.6.9-x86_64-linux)
     stringio (3.1.0)
@@ -203,6 +240,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2023.3)
       tzinfo (>= 1.0.0)
+    unicode-display_width (2.5.0)
     webrick (1.8.1)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -215,12 +253,18 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  brakeman
+  bundler-audit
   debug
   factory_bot_rails
+  pg
   puma (>= 5.0)
   rack-cors
   rails (~> 7.1.2)
   rspec
+  rubocop
+  rubocop-rails
+  ruby_audit
   sqlite3 (~> 1.4)
   tzinfo-data
 
